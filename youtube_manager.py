@@ -1,16 +1,26 @@
 import json
 
+# File path
+filename = 'youtube.txt'
+
 # Function to load Data from file/server/db
 def load_data():
     try:
         # open the file and return the data in json format
-        with open("youtube.txt",'r') as file:
+        with open(f"{filename}",'r') as file:
             return json.load(file)
 
     # If file not found
     except FileNotFoundError:
         return []
         
+# Helper method to save files
+
+def save_videos_helper(videos):
+    with open(f"{filename}", "w") as file:
+        # Dump the data of add_videos functions to file
+        json.dump(videos, file)
+
 # Function to Show all Videos
 def list_all_videos(videos):
     pass
