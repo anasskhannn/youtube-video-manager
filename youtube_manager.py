@@ -15,7 +15,6 @@ def load_data():
         return []
         
 # Helper method to save files
-
 def save_videos_helper(videos):
     with open(f"{filename}", "w") as file:
         # Dump the data of add_videos functions to file
@@ -23,12 +22,26 @@ def save_videos_helper(videos):
 
 # Function to Show all Videos
 def list_all_videos(videos):
-    pass
+    """Why enumerate?
+    enumerate() -> returns tuple of index and data of video.
+    This will help in update and delete part of the Project"""
+    print("\n")
+    print("*" * 50) #just for decoration
+    print("\n")
+    for index, video in enumerate(videos, start=1):
+        print(f"{index} :- {video["title"]}, Duration {video['duration']} \n")
+    print("\n") 
+    print("*" * 50) 
+    print("\n") 
 
 # function to add one video
 def add_video(videos):
-    pass
-
+    name = input("Enter Video Title: ")
+    time = input("Enter Video Duration: ")
+    videos.append({"title": name, "duration": time})
+    save_videos_helper(videos) #this will save the data
+    
+    
 # Function to update detail of video
 def update_details(videos):
     pass
@@ -49,7 +62,8 @@ def main():
         print("4. Delete a Video")
         print("5. Exit")
         
-        choice = input("Enter Your Choice: ")
+        choice = input("Enter Your Choice:")
+        # print(videos) #to check what are in videos
         
         # Check the choice
         
