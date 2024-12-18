@@ -44,11 +44,30 @@ def add_video(videos):
     
 # Function to update detail of video
 def update_details(videos):
-    pass
+    # First show the list then asked to choose from it
+    list_all_videos(videos)
+    
+    index = int(input("Enter the Video Number to Update: "))    #this is actual number due to enumerate function
+    
+    # check if the index given is correct 
+    if 1<= index <= len(videos):
+        name = input("Enter Video Title: ")
+        time = input("Enter Video Duration: ")
+        # index-1 because we have started the index from 1 in enumerate
+        videos[index-1] = {"title": name, "duration": time}
+        # Save the updated list
+        save_videos_helper(videos) 
+
+    else:
+        print("Invalid Index Selected")
+
+
 
 # Function to Delete Video
 def delete_video(videos):
     pass
+
+  
 
 # Wrapping in main to get to know starting of application, i.e from where our application is starting
 def main():
