@@ -1,4 +1,6 @@
-
+# Function to load Data from file/server/db
+def load_data():
+    pass
 
 # Function to Show all Videos
 def list_all_videos(videos):
@@ -18,7 +20,7 @@ def delete_video(videos):
 
 # Wrapping in main to get to know starting of application, i.e from where our application is starting
 def main():
-    videos=[] #to store videos list
+    videos= load_data() # to load data from file/server/db
     # Asking for input
     while True:
         print(" \n Youtube Video Manager | Choose Option From Below \n")
@@ -36,7 +38,6 @@ def main():
             
             # List all Youtube Videos
             case "1":
-                
                 list_all_videos(videos)
             
             # Add A new Youtube
