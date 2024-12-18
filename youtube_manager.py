@@ -1,7 +1,16 @@
+import json
+
 # Function to load Data from file/server/db
 def load_data():
-    pass
+    try:
+        # open the file and return the data in json format
+        with open("youtube.txt",'r') as file:
+            return json.load(file)
 
+    # If file not found
+    except FileNotFoundError:
+        return []
+        
 # Function to Show all Videos
 def list_all_videos(videos):
     pass
