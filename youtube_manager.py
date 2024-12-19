@@ -9,37 +9,39 @@ cur = conn.cursor()
 
 # Create a table in database
 cur.execute("""
-            CREATE TABLE IF NOT EXIST videos
-            id INT PRIMARY KEY,
+            CREATE TABLE IF NOT EXISTS videos(
+            id INTEGER PRIMARY KEY,
             name TEXT NOT NULL,
-            time TEXT NOT NULL
+            time TEXT NOT NULL)
             """)
 
 # Function to Show all Videos
-def list_all_videos(videos):
-    print("\n")
+def list_all_videos():
     print("*" * 50) #just for decoration
     print("\n")
-
-
+    cur.execute("SELECT * FROM videos") #this will hold the result thus we have to loop it
+    for row in cur.fetchall():
+        print(row)
     print("\n") 
     print("*" * 50) 
-    print("\n") 
 
 # function to add one video
-def add_video(videos):
-    pass
+def add_video(name,time):
+    cur.execute(" INSERT INTO videos (name,time) VALUES (?, ?)",(name, time))
+    # Save this 
+    conn.commit()
     
     
 # Function to update detail of video
-def update_details(videos):
-    pass
-
+def update_details(video_id,new_name,new_time):
+    cur.execute("UPDATE videos SET name = ?, time =? WHERE id= ?", (new_name, new_time, video_id))
+    conn.commit()
 
 
 # Function to Delete Video
-def delete_video():
-    pass
+def delete_video(video_id):
+    cur.execute("DELETE FROM videos WHERE id=?", (video_id,))
+    conn.commit()
 
   
 
@@ -63,16 +65,23 @@ def main():
             
             # Add A new Youtube
             case "2":
-                add_video() #this will take list of videos and append new video in it
+                name = input("Enter the name of the Video: ")
+                time = input("Enter the time of the Video: ")
+                add_video(name,time) 
             
             # Update Details
             case "3":
-                update_details() #we will edit according to the index of that video
+                video_id = input("Enter the id of the Video: ") 
+                new_name = input("Enter the name of the Video: ")
+                new_time = input("Enter the time of the Video: ")
+                update_details(video_id,new_name,new_time)
             
             # Delete Video
             case "4":
-                delete_video() #same concept of indexing
+                video_id = input("Enter the id of the Video: ")
+                delete_video(video_id) 
             
+            # Exit Case
             case "5":
                 break
             
