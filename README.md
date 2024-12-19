@@ -2,7 +2,7 @@
 
 ## Project Description
 
-YouTube Video Manager is a simple Python console application that allows users to manage a list of YouTube videos by storing their titles and durations. The application provides functionality to list, add, update, and delete video entries, with data persistently stored in a JSON file.
+YouTube Video Manager is a simple Python console application that allows users to manage a list of YouTube videos by storing their titles and durations. The application provides functionality to list, add, update, and delete video entries, with data persistently stored in a Sqlite Database.
 
 ## Features
 
@@ -10,7 +10,7 @@ YouTube Video Manager is a simple Python console application that allows users t
 - **Add Videos**: Add new videos to the collection
 - **Update Videos**: Modify existing video details
 - **Delete Videos**: Remove videos from the collection
-- **Persistent Storage**: Saves data to a JSON file for data retention between sessions
+- **Persistent Storage**: Saves data to a Sqlite Database for data retention between sessions
 
 ## Prerequisites
 
@@ -63,20 +63,18 @@ Enter Video Duration: 2:30:45
 
 ## How It Works
 
-- The application uses a `youtube.txt` file to store videos in JSON format
-- Videos are stored as a list of dictionaries with 'title' and 'duration' keys
-- The `load_data()` function reads existing videos from the file
-- The `save_videos_helper()` function writes updates back to the file
+- The application uses a `sqlite database` file to store videos.
+- The application executes basic SQL Read and Update commands for Processing
 
 ## Error Handling
 
-- If no `youtube.txt` file exists, the application starts with an empty list
+- If no database file exists, the application starts with creating one table in Database
 - Invalid menu choices are handled with an "Invalid Input" message
 - Attempting to update or delete with an invalid index shows an error message
 
 ## Customization
 
-- You can easily modify the `filename` variable to change the storage file name
+- You can easily modify the `conn` variable to change the database file name and path
 - The code can be extended to add more features like sorting or searching videos
 
 ## Contributing
